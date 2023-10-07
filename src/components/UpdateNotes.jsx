@@ -50,7 +50,7 @@ const UpdateNotes = () => {
             id="custom-bg"
           >
             <img
-              src="images/updatenotes.svg"
+              src="/images/updatenotes.svg"
               className="img-fluid w-75"
               alt="images"
             />

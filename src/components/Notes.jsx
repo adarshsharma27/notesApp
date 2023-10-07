@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BsPencilSquare, BsTrash, BsEyeFill, BsXCircle } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo } from "../features/todoSlice";
+import { NavLink } from "react-router-dom";
 const Notes = () => {
   const todosList = useSelector((state) => state.todoReducer.todos);
   console.log(todosList);
@@ -11,9 +12,9 @@ const Notes = () => {
   };
   return (
     <>
-      <div className="container py-4">
-        <div className="row">
-          {todosList?.map((element, index) => (
+      <div className="container py-4 my-md-4">
+        <div className="row py-md-4 my-md-4">
+          {todosList.length ? todosList.map((element, index) => (
             <div className="col-xl-4 col-md-5 col-sm-12" key={index}>
               <div className="product-card text-left">
                 <div className="product-image-caption">
@@ -28,7 +29,7 @@ const Notes = () => {
                       <p>{element.description}</p>
                     </div>
                     <div className="icons d-flex justify-content-end">
-                      <BsPencilSquare className="fas fa-edit" />
+                    <NavLink to={`/update/${element.id}`}>  <BsPencilSquare className="fas fa-edit" /></NavLink>
                       <BsTrash
                         className="fas fa-delete"
                         onClick={() => deleteTodoHandle(element.id)}
@@ -38,7 +39,13 @@ const Notes = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )):  <div
+              className="col-md-12 col-sm-12 text-center  py-4"
+              id="custom-bg"
+            >
+             <h4 className="font-weight-bold">No Notes Exists</h4>
+              <img src="images/nodata.svg" className="img-fluid py-4 w-25" alt="images" />
+            </div>}
         </div>
       </div>
     </>
