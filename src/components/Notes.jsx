@@ -1,38 +1,38 @@
 import React, { useState } from "react";
 import { BsPencilSquare, BsTrash, BsEyeFill, BsXCircle } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo } from "../features/todoSlice";
+import { deleteNote } from "../features/noteSlice";
 import { NavLink } from "react-router-dom";
 const Notes = () => {
-  const todosList = useSelector((state) => state.todoReducer.todos);
-  console.log(todosList);
+  const notesList = useSelector((state) => state.noteReducer.notes);
+  console.log(notesList);
   const dispatch = useDispatch();
-  const deleteTodoHandle = (id) => {
-    dispatch(deleteTodo(id));
+  const deleteNotesHandle = (id) => {
+    dispatch(deleteNote(id));
   };
   return (
     <>
       <div className="container py-4 my-md-4">
         <div className="row py-md-4 my-md-4">
-          {todosList.length ? todosList.map((element, index) => (
+          {notesList.length ? notesList.map((element, index) => (
             <div className="col-xl-4 col-md-5 col-sm-12" key={index}>
               <div className="product-card text-left">
                 <div className="product-image-caption">
                   <div className="product-image-txt">
                     <div className="heading">
-                      <h3>{element.title}</h3>
+                      <h3>{element.noteData.title}</h3>
                     </div>
                     <div className="highlight">
-                      <h5>!{element.highlight}!</h5>
+                      <h5>!{element.noteData.highlight}!</h5>
                     </div>
                     <div className="description">
-                      <p>{element.description}</p>
+                      <p>{element.noteData.description}</p>
                     </div>
                     <div className="icons d-flex justify-content-end">
                     <NavLink to={`/update/${element.id}`}>  <BsPencilSquare className="fas fa-edit" /></NavLink>
                       <BsTrash
                         className="fas fa-delete"
-                        onClick={() => deleteTodoHandle(element.id)}
+                        onClick={() => deleteNotesHandle(element.id)}
                       />
                     </div>
                   </div>

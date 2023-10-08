@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { BsPlusSquareDotted } from "react-icons/bs";
-import { addTodo } from "../features/todoSlice";
-import { useDispatch } from "react-redux";
+// import { BsPlusSquareDotted } from "react-icons/bs";
+// import { addTodo } from "../features/todoSlice";
+// import { useDispatch } from "react-redux";
 const UpdateNotes = () => {
   // const[addValue,setAddValue]=useState("")
   //  const dispatch =useDispatch()

@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { BsPlusSquareDotted } from "react-icons/bs";
-import { addTodo } from "../features/todoSlice";
+import { addNote } from "../features/noteSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const CreateNotes = () => {
-  // const[addValue,setAddValue]=useState("")
-  //  const dispatch =useDispatch()
-  // const addTodoHandle=()=>{
-  //   dispatch(addTodo(addValue))
-  // }
+  const[createNote,setCreateNote]=useState({})
+  const navigate = useNavigate();
+   const dispatch =useDispatch()
+  const addNotesHandle=()=>{
+    dispatch(addNote(createNote))
+    navigate('/notes')
+  }
+  const handleInput=(e)=>{
+    setCreateNote({...createNote,[e.target.name]:e.target.value})
+  }
+  console.log(createNote,"createNote")
   return (
     <>
       <section className="container py-4 notes-heading">
@@ -19,27 +26,32 @@ const CreateNotes = () => {
               <div className="mb-3">
                 <input
                   type="text"
+                  name="title"
                   className="form-control  mr-auto"
                   placeholder="Please Enter Title"
-                  value=""
-                  onChange={(e) => {}}
+                  value={createNote.title}
+                  onChange={handleInput}
                 />
               </div>
               <div class="mb-3">
                 <input
                   type="text"
+                  name="highlight"
                   className="form-control  mr-auto"
                   placeholder="Enter Note Highlight"
-                  value=""
-                  onChange={(e) => {}}
+                  value={createNote.highlight}
+                  onChange={handleInput}
                 />
               </div>
               <textarea
                 className="form-control  mr-auto"
                 placeholder="Please Enter Description"
+                name="description"
+                value={createNote.description}
+                onChange={handleInput}
               ></textarea>
               <div className="pt-3">
-                <button className="btn btn-custom" onClick={() => {}}>
+                <button className="btn btn-custom"  onClick={()=>addNotesHandle()} >
                   Create
                 </button>
               </div>
