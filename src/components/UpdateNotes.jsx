@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-// import { BsPlusSquareDotted } from "react-icons/bs";
-// import { addTodo } from "../features/todoSlice";
-// import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
 const UpdateNotes = () => {
-  // const[addValue,setAddValue]=useState("")
-  //  const dispatch =useDispatch()
-  // const addTodoHandle=()=>{
-  //   dispatch(addTodo(addValue))
-  // }
+  const {id} =useParams()
+  const notesList = useSelector((state) => state.noteReducer.notes);
+  const updateNote= notesList.filter((notes)=>notes.id ===id)
+  const updateNoteData= updateNote[0]
   return (
     <>
       <section className="container py-4 notes-heading">
@@ -21,7 +19,7 @@ const UpdateNotes = () => {
                   type="text"
                   className="form-control  mr-auto"
                   placeholder="Please Enter Title"
-                  value=""
+                  value={updateNoteData.noteData.title}
                   onChange={(e) => {}}
                 />
               </div>
@@ -30,17 +28,18 @@ const UpdateNotes = () => {
                   type="text"
                   className="form-control  mr-auto"
                   placeholder="Enter Note Highlight"
-                  value=""
+                  value={updateNoteData.noteData.highlight}
                   onChange={(e) => {}}
                 />
               </div>
               <textarea
                 className="form-control  mr-auto"
                 placeholder="Please Enter Description"
+                value={updateNoteData.noteData.description}
               ></textarea>
               <div className="pt-3">
                 <button className="btn btn-custom" onClick={() => {}}>
-                  Create
+                  Update
                 </button>
               </div>
             </div>
