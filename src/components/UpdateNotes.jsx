@@ -1,11 +1,24 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
+import { updateNote } from "../features/noteSlice";
 const UpdateNotes = () => {
   const {id} =useParams()
+  const navigate = useNavigate();
+  const dispatch =useDispatch()
   const notesList = useSelector((state) => state.noteReducer.notes);
-  const updateNote= notesList.filter((notes)=>notes.id ===id)
-  const updateNoteData= updateNote[0]
+  const updateNoteList= notesList.filter((notes)=>notes.id ===id)
+  const updateNoteData= updateNoteList[0].noteData
+  const [updatedNote,setUpdateNoted]=useState(updateNoteData)
+  const handleUpdate=(e)=>{
+    setUpdateNoted({
+      ...updatedNote,[e.target.name]:e.target.value ,id
+    })
+  }
+  const updateNotesHandle=()=>{
+    dispatch(updateNote(updatedNote))
+    navigate('/notes')
+  }
   return (
     <>
       <section className="container py-4 notes-heading">
@@ -17,28 +30,32 @@ const UpdateNotes = () => {
               <div className="mb-3">
                 <input
                   type="text"
+                  name="title"
                   className="form-control  mr-auto"
                   placeholder="Please Enter Title"
-                  value={updateNoteData.noteData.title}
-                  onChange={(e) => {}}
+                  value={updatedNote.title}
+                  onChange={handleUpdate}
                 />
               </div>
-              <div class="mb-3">
+              <div className="mb-3">
                 <input
                   type="text"
+                  name="highlight"
                   className="form-control  mr-auto"
                   placeholder="Enter Note Highlight"
-                  value={updateNoteData.noteData.highlight}
-                  onChange={(e) => {}}
+                  value={updatedNote.highlight}
+                  onChange={handleUpdate}
                 />
               </div>
               <textarea
+              name="description"
                 className="form-control  mr-auto"
                 placeholder="Please Enter Description"
-                value={updateNoteData.noteData.description}
+                value={updatedNote.description}
+                onChange={handleUpdate}
               ></textarea>
               <div className="pt-3">
-                <button className="btn btn-custom" onClick={() => {}}>
+                <button className="btn btn-custom" onClick={() => {updateNotesHandle()}}>
                   Update
                 </button>
               </div>

@@ -14,11 +14,21 @@ export const noteSlice= createSlice({
             }
             state.notes.push(noteData);
         },
+        updateNote:(state,action)=>{
+            const {title,highlight,description,id}=action.payload;
+            const updateId= state.notes.find(note=>note.id==id)
+            if(updateId){
+                console.log(updateId,"updateId");
+                updateId.title= title
+                updateId.highlight= highlight
+                updateId.description= description
+            }
+        },
         deleteNote:(state,action)=>{
             state.notes= state.notes.filter((note)=>note.id !==action.payload)
            
         }
     }
 })
-export const{addNote,deleteNote}=noteSlice.actions
+export const{addNote,deleteNote,updateNote}=noteSlice.actions
 export default  noteSlice.reducer;

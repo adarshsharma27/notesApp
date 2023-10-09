@@ -14,7 +14,6 @@ const CreateNotes = () => {
   const handleInput=(e)=>{
     setCreateNote({...createNote,[e.target.name]:e.target.value})
   }
-  console.log(createNote,"createNote")
   return (
     <>
       <section className="container py-4 notes-heading">
@@ -33,7 +32,7 @@ const CreateNotes = () => {
                   onChange={handleInput}
                 />
               </div>
-              <div class="mb-3">
+              <div className="mb-3">
                 <input
                   type="text"
                   name="highlight"
