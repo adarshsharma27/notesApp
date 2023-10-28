@@ -10,6 +10,9 @@ const UpdateNotes = () => {
   const updateNoteList = notesList.filter((notes) => notes.id === id);
   const updateNoteData = updateNoteList[0].noteData;
   const [updatedNote, setUpdateNoted] = useState(updateNoteData);
+  const[titleErr,setTitleErr]=useState(false)
+  const[highlightErr,setHighlightTitleErr]=useState(false)
+  const[descriptionErr,setDescriptionTitleErr]=useState(false)
   const handleUpdate = (e) => {
     setUpdateNoted({
       ...updatedNote,
@@ -18,8 +21,26 @@ const UpdateNotes = () => {
     });
   };
   const updateNotesHandle = () => {
-    dispatch(updateNote(updatedNote));
-    navigate("/notes");
+    if(updatedNote.title===""){
+      setTitleErr(true)
+      setHighlightTitleErr(false)
+      setDescriptionTitleErr(false)
+    }
+    else if(updatedNote.highlight===""){
+      setHighlightTitleErr(true)
+      setTitleErr(false)
+      setDescriptionTitleErr(false)
+    }
+    else if(updatedNote.description===""){
+      setDescriptionTitleErr(true)
+      setHighlightTitleErr(false)
+      setTitleErr(false)
+    }
+    else{
+      dispatch(updateNote(updatedNote));
+      navigate("/notes");
+    }
+   
   };
   return (
     <>
@@ -37,7 +58,14 @@ const UpdateNotes = () => {
                   placeholder="Please Enter Title"
                   value={updatedNote.title}
                   onChange={handleUpdate}
+                  maxLength={100}
+                  onInput={()=>{setTitleErr(false)}}
                 />
+                {
+                  titleErr &&   <div className="error py-2">
+               <span className="text-danger font-bold">Please Enter Title</span>
+              </div>
+                }
               </div>
               <div className="mb-3">
                 <input
@@ -47,7 +75,14 @@ const UpdateNotes = () => {
                   placeholder="Enter Note Highlight"
                   value={updatedNote.highlight}
                   onChange={handleUpdate}
+                  maxLength={100}
+                  onInput={()=>{setHighlightTitleErr(false)}}
                 />
+                {
+                  highlightErr &&   <div className="error py-2">
+               <span className="text-danger font-bold">Please Enter Highlight</span>
+              </div>
+                }
               </div>
               <textarea
                 name="description"
@@ -55,7 +90,14 @@ const UpdateNotes = () => {
                 placeholder="Please Enter Description"
                 value={updatedNote.description}
                 onChange={handleUpdate}
+                maxLength={300}
+                onInput={()=>{setDescriptionTitleErr(false)}}
               ></textarea>
+               {
+                  descriptionErr &&   <div className="error py-2">
+               <span className="text-danger font-bold">Please Enter Description</span>
+              </div>
+                }
               <div className="pt-3">
                 <button
                   className="btn btn-custom"

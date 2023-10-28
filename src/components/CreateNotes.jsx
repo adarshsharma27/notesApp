@@ -1,15 +1,43 @@
 import React, { useState } from "react";
-import { BsPlusSquareDotted } from "react-icons/bs";
 import { addNote } from "../features/noteSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const CreateNotes = () => {
-  const[createNote,setCreateNote]=useState({})
+  const[titleErr,setTitleErr]=useState(false)
+  const[highlightErr,setHighlightTitleErr]=useState(false)
+  const[descriptionErr,setDescriptionTitleErr]=useState(false)
+  const[createNote,setCreateNote]=useState({
+    title:"",
+    highlight:"",
+    description:""
+  })
   const navigate = useNavigate();
    const dispatch =useDispatch()
   const addNotesHandle=()=>{
-    dispatch(addNote(createNote))
-    navigate('/notes')
+    if(createNote.title===""){
+      setTitleErr(true)
+      setHighlightTitleErr(false)
+      setDescriptionTitleErr(false)
+    }
+    else if(createNote.highlight===""){
+      setHighlightTitleErr(true)
+      setTitleErr(false)
+      setDescriptionTitleErr(false)
+    }
+    else if(createNote.description===""){
+      setDescriptionTitleErr(true)
+      setHighlightTitleErr(false)
+      setTitleErr(false)
+    }
+    else{
+      setTitleErr(false)
+      setHighlightTitleErr(false)
+      setDescriptionTitleErr(false)
+      dispatch(addNote(createNote))
+      navigate('/notes')
+    }
+    
+   
   }
   const handleInput=(e)=>{
     setCreateNote({...createNote,[e.target.name]:e.target.value})
@@ -31,18 +59,31 @@ const CreateNotes = () => {
                   value={createNote.title}
                   onChange={handleInput}
                   maxLength={100}
+                  onInput={()=>{setTitleErr(false)}}
                 />
+                {
+                  titleErr &&   <div className="error py-2">
+               <span className="text-danger font-bold">Please Enter Title</span>
+              </div>
+                }
+               
               </div>
               <div className="mb-3">
                 <input
                   type="text"
                   name="highlight"
                   className="form-control  mr-auto"
-                  placeholder="Enter Note Highlight"
+                  placeholder="Please Enter Highlight"
                   value={createNote.highlight}
                   onChange={handleInput}
                   maxLength={100}
+                  onInput={()=>{setHighlightTitleErr(false)}}
                 />
+                {
+                  highlightErr &&   <div className="error py-2">
+               <span className="text-danger font-bold">Please Enter Highlight</span>
+              </div>
+                }
               </div>
               <textarea
                 className="form-control  mr-auto"
@@ -51,7 +92,13 @@ const CreateNotes = () => {
                 value={createNote.description}
                 onChange={handleInput}
                 maxLength={300}
+                onInput={()=>{setDescriptionTitleErr(false)}}
               ></textarea>
+              {
+                  descriptionErr &&   <div className="error py-2">
+               <span className="text-danger font-bold">Please Enter Description</span>
+              </div>
+                }
               <div className="pt-3">
                 <button className="btn btn-custom"  onClick={()=>addNotesHandle()} >
                   Create
