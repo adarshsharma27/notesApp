@@ -32,7 +32,7 @@ const Navigation = () => {
             >
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <NavLink to="/" className="nav-link active">
+                  <NavLink to="/" className="nav-link">
                     Home
                   </NavLink>
                 </li>

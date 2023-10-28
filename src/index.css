@@ -137,6 +137,7 @@ h6 {
 .form textarea {
   resize: none;
   height: 150px;
+  overflow: hidden;
 }
 
 .fas {
@@ -182,6 +183,7 @@ a:hover {
   position: relative;
   overflow: hidden;
   margin: 15px auto;
+  word-wrap: break-word;
 }
 
 .product-card h3 {

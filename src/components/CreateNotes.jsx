@@ -30,6 +30,7 @@ const CreateNotes = () => {
                   placeholder="Please Enter Title"
                   value={createNote.title}
                   onChange={handleInput}
+                  maxLength={100}
                 />
               </div>
               <div className="mb-3">
@@ -40,6 +41,7 @@ const CreateNotes = () => {
                   placeholder="Enter Note Highlight"
                   value={createNote.highlight}
                   onChange={handleInput}
+                  maxLength={100}
                 />
               </div>
               <textarea
@@ -48,6 +50,7 @@ const CreateNotes = () => {
                 name="description"
                 value={createNote.description}
                 onChange={handleInput}
+                maxLength={300}
               ></textarea>
               <div className="pt-3">
                 <button className="btn btn-custom"  onClick={()=>addNotesHandle()} >
