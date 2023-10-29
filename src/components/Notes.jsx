@@ -3,11 +3,21 @@ import { BsPencilSquare, BsTrash, BsEyeFill, BsXCircle } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteNote } from "../features/noteSlice";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 const Notes = () => {
   const notesList = useSelector((state) => state.noteReducer.notes);
   const dispatch = useDispatch();
   const deleteNotesHandle = (id) => {
     dispatch(deleteNote(id));
+    toast.success("Note Deleted Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
   return (
     <>

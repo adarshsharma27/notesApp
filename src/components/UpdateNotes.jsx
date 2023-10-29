@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateNote } from "../features/noteSlice";
+import { toast } from "react-toastify";
 const UpdateNotes = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,6 +38,15 @@ const UpdateNotes = () => {
       setTitleErr(false)
     }
     else{
+      toast.success("Note Updated Successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       dispatch(updateNote(updatedNote));
       navigate("/notes");
     }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { addNote } from "../features/noteSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify"
 const CreateNotes = () => {
   const[titleErr,setTitleErr]=useState(false)
   const[highlightErr,setHighlightTitleErr]=useState(false)
@@ -34,6 +35,15 @@ const CreateNotes = () => {
       setHighlightTitleErr(false)
       setDescriptionTitleErr(false)
       dispatch(addNote(createNote))
+      toast.success("Note Created Successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       navigate('/notes')
     }
     
