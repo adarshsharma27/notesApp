@@ -36,8 +36,8 @@ const CreateNotes = () => {
       setDescriptionTitleErr(false)
       dispatch(addNote(createNote))
       toast.success("Note Created Successfully", {
-        position: "top-right",
-        autoClose: 5000,
+        position: "top-center",
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
