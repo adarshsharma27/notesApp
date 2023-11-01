@@ -7,7 +7,7 @@ const UpdateNotes = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const notesList = useSelector((state) => state.noteReducer.notes);
+  const notesList = useSelector((state) => state.notes);
   const updateNoteList = notesList.filter((notes) => notes.id === id);
   const updateNoteData = updateNoteList[0].noteData;
   const [updatedNote, setUpdateNoted] = useState(updateNoteData);

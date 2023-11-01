@@ -5,7 +5,7 @@ import { deleteNote } from "../features/noteSlice";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 const Notes = () => {
-  const notesList = useSelector((state) => state.noteReducer.notes);
+  const notesList = useSelector((state) => state.notes);
   const dispatch = useDispatch();
   const deleteNotesHandle = (id) => {
     dispatch(deleteNote(id));
