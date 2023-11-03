@@ -7,10 +7,8 @@ const Home = () => {
   return (
     <>
       <Header
-        heading="More than just shorter links"
-        description="Build your brand’s recognition and get detailed insights on how your links are performing."
-        btnText="Get Started"
-        btnUrl="#"
+        heading="More than just Notes App"
+        description="Pocket app that we can use anytime, anyplace !!"
         cImage="images/notes.svg"
       />
     </>

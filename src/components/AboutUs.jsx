@@ -6,9 +6,7 @@ const AboutUs = () => {
     <>
       <Header
         heading="About Us"
-        description="Build your brand’s recognition and get detailed insights on how your links are performing. "
-        btnText="Get Started"
-        btnUrl="#"
+        description="You can take notes wherever and whenever you want."
         cImage="images/aboutus.svg"
       />
     </>
