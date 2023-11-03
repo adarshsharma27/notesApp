@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteNote } from "../features/noteSlice";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
+import { NotificationAudio } from "../ulits/Noticafication";
 const Notes = () => {
   const notesList = useSelector((state) => state.notes);
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Notes = () => {
       draggable: true,
       progress: undefined,
     });
+    NotificationAudio();
   };
   return (
     <>

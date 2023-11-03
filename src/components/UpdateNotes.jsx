@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateNote } from "../features/noteSlice";
 import { toast } from "react-toastify";
+import { NotificationAudio } from "../ulits/Noticafication";
 const UpdateNotes = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const UpdateNotes = () => {
         progress: undefined,
       });
       dispatch(updateNote(updatedNote));
+      NotificationAudio();
       navigate("/notes");
     }
    

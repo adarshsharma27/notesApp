@@ -3,6 +3,7 @@ import { addNote } from "../features/noteSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {toast} from "react-toastify"
+import { NotificationAudio } from "../ulits/Noticafication";
 const CreateNotes = () => {
   const[titleErr,setTitleErr]=useState(false)
   const[highlightErr,setHighlightTitleErr]=useState(false)
@@ -44,6 +45,7 @@ const CreateNotes = () => {
         draggable: true,
         progress: undefined,
       });
+      NotificationAudio();
       navigate('/notes')
     }
     
@@ -68,6 +70,7 @@ const CreateNotes = () => {
                   placeholder="Please Enter Title"
                   value={createNote.title}
                   onChange={handleInput}
+                  autoComplete="off"
                   maxLength={100}
                   onInput={()=>{setTitleErr(false)}}
                 />
@@ -86,6 +89,7 @@ const CreateNotes = () => {
                   placeholder="Please Enter Highlight"
                   value={createNote.highlight}
                   onChange={handleInput}
+                   autoComplete="off"
                   maxLength={100}
                   onInput={()=>{setHighlightTitleErr(false)}}
                 />
@@ -101,6 +105,7 @@ const CreateNotes = () => {
                 name="description"
                 value={createNote.description}
                 onChange={handleInput}
+                 autoComplete="off"
                 maxLength={300}
                 onInput={()=>{setDescriptionTitleErr(false)}}
               ></textarea>
