@@ -47,6 +47,11 @@ const Navigation = () => {
                     CreateNotes
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/notes">
+                    AllNotes
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </div>
