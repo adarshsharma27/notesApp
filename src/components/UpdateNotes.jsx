@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateNote } from "../features/noteSlice";
 import { toast } from "react-toastify";
 import { NotificationAudio } from "../ulits/Noticafication";
+import { motion } from "framer-motion";
 const UpdateNotes = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -57,11 +58,47 @@ const UpdateNotes = () => {
   return (
     <>
       <section className="container py-4 notes-heading">
-        <h4 className=" text-start">Update Notes</h4>
-        <p className=" text-start ">Make Notes Effectively</p>
+        <motion.h4
+          className=" text-start"
+          initial={{ x: -100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{
+            x: { type: "spring", stiffness: 60 },
+            opacity: { duration: 0.2 },
+            ease: "easeIn",
+            duration: 1,
+          }}
+        >
+          Update Notes
+        </motion.h4>
+        <motion.p
+          className=" text-start "
+          initial={{ x: -100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{
+            delay: 0.2,
+            x: { type: "spring", stiffness: 60 },
+            opacity: { duration: 0.2 },
+            ease: "easeIn",
+            duration: 1,
+          }}
+        >
+          Make Notes Effectively
+        </motion.p>
         <div className="row" id="first-second">
           <div className="col-lg-7 order-md-1 order-2 col-md-12 col-sm-12">
-            <div className="form">
+            <motion.div
+              className="form"
+              initial={{ y: 200, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                delay: 0.2,
+                x: { type: "spring", stiffness: 60 },
+                opacity: { duration: 0.6 },
+                ease: "easeIn",
+                duration: 1,
+              }}
+            >
               <div className="mb-3">
                 <input
                   type="text"
@@ -71,13 +108,17 @@ const UpdateNotes = () => {
                   value={updatedNote.title}
                   onChange={handleUpdate}
                   maxLength={100}
-                  onInput={()=>{setTitleErr(false)}}
+                  onInput={() => {
+                    setTitleErr(false);
+                  }}
                 />
-                {
-                  titleErr &&   <div className="error py-2">
-               <span className="text-danger font-bold">Please Enter Title</span>
-              </div>
-                }
+                {titleErr && (
+                  <div className="error py-2">
+                    <span className="text-danger font-bold">
+                      Please Enter Title
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <input
@@ -88,13 +129,17 @@ const UpdateNotes = () => {
                   value={updatedNote.highlight}
                   onChange={handleUpdate}
                   maxLength={100}
-                  onInput={()=>{setHighlightTitleErr(false)}}
+                  onInput={() => {
+                    setHighlightTitleErr(false);
+                  }}
                 />
-                {
-                  highlightErr &&   <div className="error py-2">
-               <span className="text-danger font-bold">Please Enter Highlight</span>
-              </div>
-                }
+                {highlightErr && (
+                  <div className="error py-2">
+                    <span className="text-danger font-bold">
+                      Please Enter Highlight
+                    </span>
+                  </div>
+                )}
               </div>
               <textarea
                 name="description"
@@ -103,30 +148,47 @@ const UpdateNotes = () => {
                 value={updatedNote.description}
                 onChange={handleUpdate}
                 maxLength={300}
-                onInput={()=>{setDescriptionTitleErr(false)}}
+                onInput={() => {
+                  setDescriptionTitleErr(false);
+                }}
               ></textarea>
-               {
-                  descriptionErr &&   <div className="error py-2">
-               <span className="text-danger font-bold">Please Enter Description</span>
-              </div>
-                }
+              {descriptionErr && (
+                <div className="error py-2">
+                  <span className="text-danger font-bold">
+                    Please Enter Description
+                  </span>
+                </div>
+              )}
               <div className="pt-3">
-                <button
+                <motion.button
                   className="btn btn-custom"
                   onClick={() => {
                     updateNotesHandle();
                   }}
+                  whileHover={{
+                    scale: 1.1,
+                    backgroundColor: "#2bc48a",
+                    transition: { type: "spring", stiffness: 500 },
+                  }}
                 >
                   Update
-                </button>
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
           </div>
           <div
             className="col-md-5 order-md-2 order-1 text-center"
             id="custom-bg"
           >
-            <img
+            <motion.img
+             whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                delay: 0.3,
+                x: { type: "spring", stiffness: 60 },
+                opacity: { duration: 0.6 },
+                ease: "easeIn",
+                duration: 1,
+              }}
               src="/images/updatenotes.svg"
               className="img-fluid w-75"
               alt="images"
