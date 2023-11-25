@@ -93,7 +93,7 @@ const UpdateNotes = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{
                 delay: 0.2,
-                x: { type: "spring", stiffness: 60 },
+                y: { type: "spring", stiffness: 60 },
                 opacity: { duration: 0.6 },
                 ease: "easeIn",
                 duration: 1,
@@ -113,11 +113,26 @@ const UpdateNotes = () => {
                   }}
                 />
                 {titleErr && (
-                  <div className="error py-2">
+                  <motion.div
+                    className="error py-2"
+                    initial={{ x: 0, opacity: 0 }}
+                    animate={{
+                      x: [-30, -20, -10, 0, 10, 20, 30, 30, 20, 10, 0],
+                      opacity: 1,
+                    }}
+                    exit={{ x: 0, opacity: 1 }}
+                    transition={{
+                      delay: 0.2,
+                      y: { type: "spring", stiffness: 500 },
+                      opacity: { duration: 0.4 },
+                      ease: "easeIn",
+                      duration: 0.5,
+                    }}
+                  >
                     <span className="text-danger font-bold">
                       Please Enter Title
                     </span>
-                  </div>
+                  </motion.div>
                 )}
               </div>
               <div className="mb-3">
@@ -134,11 +149,26 @@ const UpdateNotes = () => {
                   }}
                 />
                 {highlightErr && (
-                  <div className="error py-2">
+                  <motion.div
+                    className="error py-2"
+                    initial={{ x: 0, opacity: 0 }}
+                    animate={{
+                      x: [-30, -20, -10, 0, 10, 20, 30, 30, 20, 10, 0],
+                      opacity: 1,
+                    }}
+                    exit={{ x: 0, opacity: 1 }}
+                    transition={{
+                      delay: 0.2,
+                      y: { type: "spring", stiffness: 500 },
+                      opacity: { duration: 0.4 },
+                      ease: "easeIn",
+                      duration: 0.5,
+                    }}
+                  >
                     <span className="text-danger font-bold">
                       Please Enter Highlight
                     </span>
-                  </div>
+                  </motion.div>
                 )}
               </div>
               <textarea
@@ -153,11 +183,26 @@ const UpdateNotes = () => {
                 }}
               ></textarea>
               {descriptionErr && (
-                <div className="error py-2">
+                <motion.div
+                  className="error py-2"
+                  initial={{ x: 0, opacity: 0 }}
+                  animate={{
+                    x: [-30, -20, -10, 0, 10, 20, 30, 30, 20, 10, 0],
+                    opacity: 1,
+                  }}
+                  exit={{ x: 0, opacity: 1 }}
+                  transition={{
+                    delay: 0.2,
+                    y: { type: "spring", stiffness: 500 },
+                    opacity: { duration: 0.4 },
+                    ease: "easeIn",
+                    duration: 0.5,
+                  }}
+                >
                   <span className="text-danger font-bold">
                     Please Enter Description
                   </span>
-                </div>
+                </motion.div>
               )}
               <div className="pt-3">
                 <motion.button
@@ -181,7 +226,7 @@ const UpdateNotes = () => {
             id="custom-bg"
           >
             <motion.img
-             whileInView={{ x: 0, opacity: 1 }}
+              whileInView={{ x: 0, opacity: 1 }}
               transition={{
                 delay: 0.3,
                 x: { type: "spring", stiffness: 60 },
