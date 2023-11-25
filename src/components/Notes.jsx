@@ -34,13 +34,12 @@ const Notes = () => {
                   key={index}
                   initial={{ y: -100, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
+                  exit={{ y: [0,100], opacity: 0,transition:{ delay: index* 0.3, duration:1.2} }}
                   transition={{
                     delay: index* 0.3,
                     y: { type: "spring", stiffness: 60 },
                     opacity: { duration: 0.2 },
                     ease: "easeIn",
-                    staggerChildren: 0.3,
-                    delayChildren: 0.2,
                     duration: 1,
                   }}
                 >
