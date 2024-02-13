@@ -8,6 +8,15 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-PFNMN1X5P9");
+// Send pageview with a custom path
+ReactGA.send({
+  hitType: "pageview",
+  page: `${window.location.href}`,
+  title: "ReactNoter",
+});
 let persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
